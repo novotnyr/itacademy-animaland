@@ -9,5 +9,5 @@ public interface TrailDao {
 	
 	Trail findById(Long id);
 	
-	
+	void delete(Trail trail);
 }

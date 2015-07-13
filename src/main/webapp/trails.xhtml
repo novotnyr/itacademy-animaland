@@ -10,19 +10,28 @@
 	<ui:define name="content">
 
 		<h1>Trails</h1>
-		<h:dataTable var="trail" value="#{trailsBean.trails}" styleClass="table">
-			<h:column>
-				<f:facet name="header"></f:facet>
-				
-				<h:link outcome="trail" value="#{trail.description}">
-					<f:param name="trailId" value="#{trail.id}"/>
-				</h:link>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Number of animals</f:facet>
-				#{trail.animals.size()}
-			</h:column>
-		</h:dataTable>
+		<h:form>
+			<h:dataTable var="trail" value="#{trailsBean.trails}" styleClass="table">
+				<h:column>
+					<f:facet name="header"></f:facet>
+					
+					<h:link outcome="trail" value="#{trail.description}">
+						<f:param name="trailId" value="#{trail.id}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Number of animals</f:facet>
+					#{trail.animals.size()}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Actions</f:facet>
+					<h:commandButton value="Delete" 
+						action="#{trailsBean.delete(trail)}"
+						styleClass="btn btn-danger"
+						/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
 		
 		<h:form>
 			<h:commandButton action="#{trailsBean.submit}"/>

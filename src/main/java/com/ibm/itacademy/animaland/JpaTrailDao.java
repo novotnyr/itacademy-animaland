@@ -29,6 +29,11 @@ public class JpaTrailDao implements TrailDao {
 	public Trail findById(Long id) {
 		return entityManager.find(Trail.class, id);
 	}
+
+	@Override
+	public void delete(Trail trail) {
+		entityManager.remove(trail);
+	}
 	
 	
 	
