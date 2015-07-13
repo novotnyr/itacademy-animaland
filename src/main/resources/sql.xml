@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+ 
+ <properties>
+ 	<entry key="getStatistics">
+SELECT animal.*, count(*) AS visitor_count
+FROM animal
+JOIN snapshot ON snapshot.animal_id = animal.id
+JOIN snapshot_visitor ON snapshot_visitor.snapshot_id = snapshot.id
+JOIN visitor ON visitor.id = snapshot_visitor.visitor_id
+GROUP BY animal.id, animal.species, animal.age, animal.male, animal.diet
+ 	</entry>
+ 	
+ 	<entry key="login">
+select count(*) > 0
+from account
+where login = ? and password = ? 	
+ 	</entry>
+ </properties>

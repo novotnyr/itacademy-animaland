@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+	
+	<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Animal Snapshots</h1>		
+		<div class="row">
+			<div class="col-md-12">
+				<h:form>
+					<h:dataTable value="#{snapshotBean.snapshots}" var="snapshot" 
+						styleClass="table">
+						
+						<h:column>
+							<f:facet name="header">
+								Animal
+							</f:facet>
+							#{snapshot.animal.species}
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">
+								Visitors
+							</f:facet>
+							#{snapshot.visitors.size()}
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">
+								Actions
+							</f:facet>
+							<h:commandButton 
+								action="#{snapshotBean.delete(snapshot)}" 
+								value="Delete"
+								styleClass="btn btn-danger"
+								/>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+				
+				<h:form styleClass="form">
+					<h:messages styleClass="alert alert-danger"/>
+					
+					<f:validateBean>
+						<div class="form-group">
+							<h:outputLabel value="Animal"/>
+							<h:selectOneMenu value="#{snapshotBean.animalId}"
+								styleClass="form-control"
+							>
+								<f:selectItems value="#{snapshotBean.animals}"
+									var="animal"
+									itemValue="#{animal.id}"
+									itemLabel="#{animal.species}"
+								/>
+							</h:selectOneMenu>
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Adults"/>
+							<h:inputText value="#{snapshotBean.adults}" 
+								styleClass="form-control"
+							/>
+						</div>
+						<div class="form-group">	
+							<h:outputLabel value="Children" />
+							<h:inputText value="#{snapshotBean.children}" 
+								styleClass="form-control"
+							/>
+						</div>	
+							<h:commandButton 
+								action="#{snapshotBean.insertSnapshot}"
+								value="Add snapshot"
+								styleClass="btn btn-primary"
+								/>
+					</f:validateBean>
+				</h:form>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>

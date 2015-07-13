@@ -1,0 +1,31 @@
+<ui:composition
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	
+	template="/WEB-INF/template.xhtml"
+	>
+	
+	<ui:define name="title">Trails</ui:define>
+	<ui:define name="content">
+
+		<h1>Trails</h1>
+		<h:dataTable var="trail" value="#{trailsBean.trails}" styleClass="table">
+			<h:column>
+				<f:facet name="header"></f:facet>
+				#{trail.description}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Number of animals</f:facet>
+				#{trail.animals.size()}
+			</h:column>
+		</h:dataTable>
+		
+		<h:form>
+			<h:commandButton action="#{trailsBean.submit}"/>
+		</h:form>
+
+	
+	</ui:define>
+	
+</ui:composition>

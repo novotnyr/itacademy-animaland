@@ -1,0 +1,29 @@
+<ui:composition
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	
+	template="/WEB-INF/template.xhtml"
+	>
+	
+	<ui:define name="title">Employees</ui:define>
+	<ui:define name="content">
+
+		<h1>Employees</h1>
+		<h:dataTable var="employee" value="#{employeeBean.employees}" styleClass="table">
+			<h:column>
+				<f:facet name="header"></f:facet>
+				#{employee.name}
+			</h:column>
+		</h:dataTable>
+		
+		<h:form>
+			<h:outputLabel value="Name"/>
+			<h:inputText value="#{employeeBean.employee.name}"/>
+			<h:commandButton action="#{employeeBean.submit}"/>
+		</h:form>
+
+	
+	</ui:define>
+	
+</ui:composition>

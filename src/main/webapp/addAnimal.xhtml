@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h:form>
+		
+		<h:panelGrid columns="3">
+			<h:outputText value="Species:" />
+			
+			<h:inputText 
+				id="species"
+				value="#{addAnimalBean.animal.species}" 
+				label="Species"
+				required="true"
+				requiredMessage="* required value"
+			/>
+			<h:message for="species" />
+			
+			<h:outputText value="Age:" />
+			<h:inputText 
+				id="age"
+				label="Age"
+				value="#{addAnimalBean.animal.age}"
+				required="true"
+				requiredMessage="* required value"
+				validatorMessage="Please enter an age greater than zero"
+				converterMessage="Please enter a number"
+				>
+				
+				<f:validateLongRange minimum="0" maximum="150"/>
+			</h:inputText>
+			<h:message for="age" />
+			
+			<h:outputText value="Is male?"/>
+			<h:selectBooleanCheckbox value="#{addAnimalBean.animal.male}"/>
+			<h:outputText value="" />
+			
+			<h:outputText value="Diet:" />
+			<h:inputText
+				id="diet"
+				label="Diet"
+				value="#{addAnimalBean.animal.diet}"
+				required="true"
+			 />
+			 <h:message for="diet" />
+			
+			<h:commandButton action="#{addAnimalBean.submit}" 
+				value="Submit"/>
+		</h:panelGrid>		
+	</h:form>
+
+
+
+</body>
+</html>

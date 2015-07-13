@@ -1,0 +1,42 @@
+<ui:composition
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	
+	template="/WEB-INF/template.xhtml"
+	>
+	
+	<ui:define name="title">Animals</ui:define>
+	<ui:define name="content">
+
+		<h1>Animals</h1>
+		<h:form>
+		<h:dataTable value="#{animalsBean.animals}" var="animal" styleClass="table">
+			<h:column>
+				<f:facet name="header">Species</f:facet>  
+				<h:link value="#{animal.species}" outcome="animal">
+					<f:param name="id" value="#{animal.id}"/>
+				</h:link>
+				
+			</h:column>
+			<h:column>
+				<f:facet name="header">Age</f:facet>
+				#{animal.age}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Action</f:facet>
+				<h:button value="Edit" outcome="editAnimal">
+					<f:param name="id" value="#{animal.id}" />
+				</h:button>
+				<h:commandButton value="Delete" action="#{animalsBean.delete(animal)}">
+					
+				</h:commandButton> 		
+			</h:column>
+		</h:dataTable>
+		</h:form>
+		<small>Logged as: #{loginBean.login}</small>
+
+	
+	</ui:define>
+	
+</ui:composition>
