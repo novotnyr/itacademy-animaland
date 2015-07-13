@@ -13,7 +13,10 @@
 		<h:dataTable var="trail" value="#{trailsBean.trails}" styleClass="table">
 			<h:column>
 				<f:facet name="header"></f:facet>
-				#{trail.description}
+				
+				<h:link outcome="trail" value="#{trail.description}">
+					<f:param name="trailId" value="#{trail.id}"/>
+				</h:link>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Number of animals</f:facet>
