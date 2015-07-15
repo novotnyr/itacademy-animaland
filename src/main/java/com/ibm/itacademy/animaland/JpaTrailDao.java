@@ -34,6 +34,17 @@ public class JpaTrailDao implements TrailDao {
 	public void delete(Trail trail) {
 		entityManager.remove(trail);
 	}
+
+	@Override
+	public List<Trail> search(String query) {
+
+		String jpaQuery 
+			= "SELECT t FROM Trail t WHERE t.description LIKE :query";
+		return entityManager
+				.createQuery(jpaQuery)
+				.setParameter("query", query)
+				.getResultList();
+	}
 	
 	
 	

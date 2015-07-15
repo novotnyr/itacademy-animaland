@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -13,6 +14,9 @@ public class Employee {
 	
 	private String name;
 
+	@OneToOne(mappedBy = "employee")
+	private Trail trail;
+	
 	public Long getId() {
 		return id;
 	}
@@ -29,5 +33,11 @@ public class Employee {
 		this.name = name;
 	}
 	
+	public Trail getTrail() {
+		return trail;
+	}
 	
+	public void setTrail(Trail trail) {
+		this.trail = trail;
+	}
 }

@@ -23,9 +23,14 @@ public class TrailsBean implements Serializable {
 	
 	private List<Trail> trails = new LinkedList<Trail>();
 	
+	private Trail trail;
+	
+	private String query;
+	
 	@PostConstruct
 	public void init() {
 		trails = trailDao.list();
+		trail = new Trail();
 	}
 	
 	public void delete(Trail trail) {
@@ -34,16 +39,33 @@ public class TrailsBean implements Serializable {
 	}
 	
 	public void submit() {
-		Trail trail = new Trail();
-		trail.setDescription("African animals");
-		
 		trailDao.saveOrUpdate(trail);
 		init();
 	}
 	
-	
+	public void search() {
+		System.out.println("Searching " + query);
+		
+		this.trails = trailDao.search(query);
+	}
 	
 	public List<Trail> getTrails() {
 		return trails;
+	}
+	
+	public Trail getTrail() {
+		return trail;
+	}
+	
+	public void setTrail(Trail trail) {
+		this.trail = trail;
+	}
+	
+	public String getQuery() {
+		return query;
+	}
+	
+	public void setQuery(String query) {
+		this.query = query;
 	}
 }

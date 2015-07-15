@@ -37,8 +37,7 @@ public class JpaEmployeeDao implements EmployeeDao {
 	@Override
 	public Employee findById(Long id) {
 		logger.info("findById()");
-
-		return null;
+		return entityManager.find(Employee.class, id);
 	}
 
 }

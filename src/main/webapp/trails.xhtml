@@ -10,6 +10,14 @@
 	<ui:define name="content">
 
 		<h1>Trails</h1>
+		
+		<h:form>
+			<h:inputText value="#{trailsBean.query}"/>
+			<h:commandButton action="#{trailsBean.search}" 
+				value="Search"
+				styleClass="btn btn-primary"/>
+		</h:form>
+		
 		<h:form>
 			<h:dataTable var="trail" value="#{trailsBean.trails}" styleClass="table">
 				<h:column>
@@ -34,7 +42,8 @@
 		</h:form>
 		
 		<h:form>
-			<h:commandButton action="#{trailsBean.submit}"/>
+			<h:inputText value="#{trailsBean.trail.description}"/>
+			<h:commandButton action="#{trailsBean.submit}" value="Add"/>
 		</h:form>
 
 	

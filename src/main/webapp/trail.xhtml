@@ -20,7 +20,46 @@
 			</ui:repeat>
 		</ul>
 		
-	
+		<h:form>
+			<h2>Assign Maintainer</h2>
+			<div>
+				Current Maintainer: #{trailBean.trail.employee.name}
+			</div>
+			<h:selectOneMenu value="#{trailBean.selectedEmployeeId}">
+				<f:selectItems 
+					var="e"
+					value="#{employeeBean.employees}"
+					itemLabel="#{e.name}"
+					itemValue="#{e.id}"
+				/>
+			</h:selectOneMenu>
+			<h:commandButton action="#{trailBean.assignEmployee}"
+				styleClass="btn btn-primary"
+				value="Assign"
+			/>
+		</h:form>
+		
+		
+		<h:form>
+			<h2>Assign Animals</h2>
+			<h:selectOneMenu value="#{trailBean.selectedAnimalId}">
+				<f:selectItems 
+					var="a" 
+					value="#{trailBean.availableAnimals}"
+					itemLabel="#{a.species}"
+					itemValue="#{a.id}"
+					/>
+				
+			</h:selectOneMenu>
+			
+			<h:commandButton action="#{trailBean.assignAnimal}"
+				styleClass="btn btn-primary"
+				value="Assign" />
+		</h:form>
+		
+		
+		
+			
 	</ui:define>
 	
 </ui:composition>

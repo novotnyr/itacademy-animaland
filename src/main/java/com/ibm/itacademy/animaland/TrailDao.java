@@ -10,4 +10,6 @@ public interface TrailDao {
 	Trail findById(Long id);
 	
 	void delete(Trail trail);
+	
+	List<Trail> search(String query);
 }
