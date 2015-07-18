@@ -1,0 +1,51 @@
+<ui:composition
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	
+	template="/WEB-INF/template.xhtml"
+	>
+	
+	<ui:define name="title">Search</ui:define>
+	<ui:define name="content">
+	
+		<h1>Search</h1>
+		
+		<h:form>
+			<h:inputText id="query" value="#{searchBean.query}">
+				<f:ajax 
+					execute="query" 
+					render="searchResults"
+					event="keydown"
+					listener="#{searchBean.search}"
+					 />
+				
+			</h:inputText>
+			<h:commandButton value="Search" action="#{searchBean.search}">
+				<f:ajax 
+					execute="query" 
+					render="searchResults"
+					/>
+			</h:commandButton>
+		</h:form>
+	
+		<h:panelGroup id="searchResults">
+			<ui:repeat var="result" value="#{searchBean.results}">
+				<li>#{result.description}</li>
+			</ui:repeat>
+		</h:panelGroup>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</ui:define>
+	
+</ui:composition>

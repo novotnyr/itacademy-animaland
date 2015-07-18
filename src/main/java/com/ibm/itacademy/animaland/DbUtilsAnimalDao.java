@@ -13,7 +13,6 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 public class DbUtilsAnimalDao implements AnimalDao {
-
 	
 	private QueryRunner queryRunner;
 
@@ -94,6 +93,17 @@ public class DbUtilsAnimalDao implements AnimalDao {
 			throw new DatabaseException("Unable to insert animal", e);
 		}
 		
+	}
+
+	@Override
+	public void delete(Animal animal) {
+		try {
+			String sql = "DELETE FROM animal WHERE id = ?";
+			queryRunner.update(sql, animal.getId());
+		} catch (SQLException e) {
+			throw new DatabaseException("Unable to delete animal " 
+					+ animal.getId(), e);
+		}
 	}
 
 	

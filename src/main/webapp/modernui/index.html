@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Animaland!</title>
+</head>
+<body>
+	<div id="animals">
+	N/A
+	</div>
+
+</body>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script>
+	console.log("Animaland!");
+	
+	function updateAnimalCount(response) {
+		console.log(response);
+		
+		var animalsDiv = $("#animals");
+		animalsDiv.text("There are " + response.length + " animals in our ZOO");
+	}
+	
+	var ajaxConfig = {};
+	ajaxConfig.url = "http://LOKAL:8080/animaland/api/animals/";
+	
+	$.ajax(ajaxConfig)
+		.then(updateAnimalCount);
+	
+</script>
+
+</html>

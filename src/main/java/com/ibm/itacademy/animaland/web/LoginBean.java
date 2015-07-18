@@ -40,6 +40,13 @@ public class LoginBean implements Serializable {
 		
 		return null;
 	}
+	
+	public String logout() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().invalidateSession();
+		
+		return "login?faces-redirect=true";
+	}
 
 	public String getLogin() {
 		return login;
