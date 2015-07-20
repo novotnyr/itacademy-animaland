@@ -1,68 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:f="http://java.sun.com/jsf/core" 
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Insert title here</title>
-	
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
 
-</head>
-<body>
-	<h:form>
+    <ui:define name="title">Add or edit animal</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <h:form styleClass="form-horizontal">
 
-		<h:inputHidden value="#{editAnimalBean.animal.id}"/>
-				
-		<h:panelGrid columns="3">
-		
-			<h:outputText value="Species:" />
-			
-			<h:inputText 
-				id="species"
-				value="#{editAnimalBean.animal.species}" 
-				label="Species"
-				required="true"
-				requiredMessage="* required value"
-			/>
-			<h:message for="species" />
-			
-			<h:outputText value="Age:" />
-			<h:inputText 
-				id="age"
-				label="Age"
-				value="#{editAnimalBean.animal.age}"
-				required="true"
-				requiredMessage="* required value"
-				validatorMessage="Please enter an age greater than zero"
-				converterMessage="Please enter a number"
-				>
-				
-				<f:validateLongRange minimum="0" maximum="150"/>
-			</h:inputText>
-			<h:message for="age" />
-			
-			<h:outputText value="Is male?"/>
-			<h:selectBooleanCheckbox value="#{editAnimalBean.animal.male}"/>
-			<h:outputText value="" />
-			
-			<h:outputText value="Diet:" />
-			<h:inputText
-				id="diet"
-				label="Diet"
-				value="#{editAnimalBean.animal.diet}"
-				required="true"
-			 />
-			 <h:message for="diet" />
-			
-			<h:commandButton action="#{editAnimalBean.submit}" 
-				value="Submit"/>
-		</h:panelGrid>		
-	</h:form>
+                <h:inputHidden value="#{editAnimalBean.animal.id}"/>
 
+                <div class="form-group">
+                    <h:outputLabel for="species" styleClass="col-sm-2 control-label" value="Species"/>
 
+                    <div class="col-sm-10">
+                        <h:inputText id="species" value="#{editAnimalBean.animal.species}"
+                                     label="Species" required="true" requiredMessage="* required value"
+                                     class="form-control"
+                                />
+                        <h:message for="species"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="age" styleClass="col-sm-2 control-label" value="Age:"/>
+                    <div class="col-sm-10">
+                        <h:inputText id="age" label="Age"
+                                     value="#{editAnimalBean.animal.age}" required="true"
+                                     requiredMessage="* required value"
+                                     validatorMessage="Please enter an age greater than zero"
+                                     converterMessage="Please enter a number"
+                                     class="form-control"
+                                >
 
-</body>
-</html>
+                            <f:validateLongRange minimum="0" maximum="150"/>
+                        </h:inputText>
+                    </div>
+                    <h:message for="age"/>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="male" styleClass="col-sm-2 control-label" value="Is male?"/>
+                    <div class="col-sm-10">
+                        <h:selectBooleanCheckbox
+                                id="male"
+                                value="#{editAnimalBean.animal.male}"
+                                class="form-control"
+                                />
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <h:outputLabel for="diet" styleClass="col-sm-2 control-label" value="Diet:"/>
+                    <div class="col-sm-10">
+                        <h:inputText id="diet" label="Diet"
+                                     value="#{editAnimalBean.animal.diet}"
+                                     required="true"
+                                     class="form-control"
+                                />
+                    </div>
+                    <h:message for="diet"/>
+                </div>
+                <div class="form-group">
+                	<div class="col-sm-offset-2 col-sm-10">
+                    	<h:commandButton action="#{editAnimalBean.submit}" value="Submit" styleClass="btn btn-primary" />
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

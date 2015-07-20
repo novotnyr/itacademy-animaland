@@ -1,4 +1,4 @@
-package com.ibm.itacademy.animaland;
+package com.ibm.itacademy.animaland.dao;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+
+import com.ibm.itacademy.animaland.Trail;
 
 @Stateful
 public class JpaTrailDao implements TrailDao {
@@ -21,7 +23,7 @@ public class JpaTrailDao implements TrailDao {
 	}
 
 	@Override
-	public void saveOrUpdate(Trail trail) {
+	public void insert(Trail trail) {
 		entityManager.persist(trail);
 	}
 
@@ -41,9 +43,14 @@ public class JpaTrailDao implements TrailDao {
 		String jpaQuery 
 			= "SELECT t FROM Trail t WHERE t.description LIKE :query";
 		return entityManager
-				.createQuery(jpaQuery)
+				.createQuery(jpaQuery, Trail.class)
 				.setParameter("query", query)
 				.getResultList();
+	}
+
+	@Override
+	public Trail update(Trail trail) {
+		return entityManager.merge(trail);
 	}
 	
 	

@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.ibm.itacademy.animaland.Animal;
-import com.ibm.itacademy.animaland.AnimalDao;
-import com.ibm.itacademy.animaland.AttendanceTrackingService;
+import com.ibm.itacademy.animaland.dao.AnimalDao;
+import com.ibm.itacademy.animaland.service.AttendanceTrackingService;
 
 @Named
 public class StatisticsBean {

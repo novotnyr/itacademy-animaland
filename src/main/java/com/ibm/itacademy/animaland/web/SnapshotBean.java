@@ -14,11 +14,11 @@ import javax.validation.constraints.Min;
 import org.omnifaces.cdi.ViewScoped;
 
 import com.ibm.itacademy.animaland.Animal;
-import com.ibm.itacademy.animaland.AnimalDao;
 import com.ibm.itacademy.animaland.AttendanceSnapshot;
-import com.ibm.itacademy.animaland.AttendanceTrackingService;
 import com.ibm.itacademy.animaland.Visitor;
 import com.ibm.itacademy.animaland.VisitorType;
+import com.ibm.itacademy.animaland.dao.AnimalDao;
+import com.ibm.itacademy.animaland.service.AttendanceTrackingService;
 
 @Named
 @ViewScoped
@@ -68,16 +68,10 @@ public class SnapshotBean implements Serializable {
 		snapshot.setDate(new Date());
 		snapshot.setAnimal(animalDao.findById(animalId));
 		for (int i = 0; i < adults; i++) {
-			Visitor adult = new Visitor();
-			adult.setId(1L);
-			adult.setType(VisitorType.ADULT);
-			snapshot.add(adult);
+			snapshot.add(new Visitor(VisitorType.ADULT));
 		}
 		for (int i = 0; i < children; i++) {
-			Visitor child = new Visitor();
-			child.setId(2L);
-			child.setType(VisitorType.CHILD);
-			snapshot.add(child);
+			snapshot.add(new Visitor(VisitorType.CHILD));
 		}
 		attendanceTrackingService.insert(snapshot);
 		refreshSnapshots();

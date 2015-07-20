@@ -25,12 +25,9 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Action</f:facet>
-				<h:button value="Edit" outcome="editAnimal">
+				<h:button value="Edit" outcome="editAnimal" styleClass="btn btn-danger">
 					<f:param name="id" value="#{animal.id}" />
 				</h:button>
-				<h:commandButton value="Delete" action="#{animalsBean.delete(animal)}">
-					
-				</h:commandButton> 		
 			</h:column>
 		</h:dataTable>
 		</h:form>

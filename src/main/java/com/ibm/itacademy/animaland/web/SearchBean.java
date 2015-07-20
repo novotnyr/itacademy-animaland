@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.ibm.itacademy.animaland.Trail;
-import com.ibm.itacademy.animaland.TrailDao;
+import com.ibm.itacademy.animaland.dao.TrailDao;
 
 @Named
 @RequestScoped

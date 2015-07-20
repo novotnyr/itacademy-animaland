@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ibm.itacademy.animaland.Animal;
-import com.ibm.itacademy.animaland.AnimalDao;
+import com.ibm.itacademy.animaland.dao.AnimalDao;
 
 @Named
 @RequestScoped
@@ -38,7 +38,7 @@ public class EditAnimalBean {
 	
 	public String submit() {
 		logger.info("Saving animal {}", animal);
-		animalDao.saveOrUpdate(animal);
+		animalDao.update(animal);
 
 		return "animals?faces-redirect=true";
 	}

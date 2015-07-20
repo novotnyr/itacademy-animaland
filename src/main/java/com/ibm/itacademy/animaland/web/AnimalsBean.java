@@ -2,22 +2,27 @@ package com.ibm.itacademy.animaland.web;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.ibm.itacademy.animaland.Animal;
-import com.ibm.itacademy.animaland.AnimalDao;
+import com.ibm.itacademy.animaland.dao.AnimalDao;
 
 @Named
 public class AnimalsBean {
 	@Inject
 	private AnimalDao animalDao;
 	
-	public List<Animal> getAnimals() {
-		return animalDao.list();
+	private List<Animal> animals;
+	
+	@PostConstruct
+	public void refresh() {
+		this.animals = animalDao.list();
 	}
 	
-	public void delete(Animal animal) {
-		System.err.println("Deleting an animal..." + animal);
+	public List<Animal> getAnimals() {
+		return this.animals;
 	}
+	
 }

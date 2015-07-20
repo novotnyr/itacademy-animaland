@@ -1,17 +1,33 @@
 package com.ibm.itacademy.animaland;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class AttendanceSnapshot {
+	@Id
+	@GeneratedValue
 	private Long id;
 	
+	@ManyToOne
 	private Animal animal;
 	
+	@Column(name = "timestamp")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
-	private List<Visitor> visitors = new ArrayList<Visitor>();
+	@ElementCollection
+	private Set<Visitor> visitors = new HashSet<Visitor>();
 	
 	public Long getId() {
 		return id;
@@ -37,14 +53,6 @@ public class AttendanceSnapshot {
 		this.date = date;
 	}
 
-	public List<Visitor> getVisitors() {
-		return visitors;
-	}
-
-	public void setVisitors(List<Visitor> visitors) {
-		this.visitors = visitors;
-	}
-
 	public void add(Visitor visitor) {
 		this.visitors.add(visitor);
 	}
@@ -53,6 +61,14 @@ public class AttendanceSnapshot {
 	public String toString() {
 		return "AttendanceSnapshot [animal=" + animal + ", date=" + date
 				+ ", visitors=" + visitors + "]";
+	}
+
+	public Set<Visitor> getVisitors() {
+		return visitors;
+	}
+
+	public void setVisitors(Set<Visitor> visitors) {
+		this.visitors = visitors;
 	}
 	
 	

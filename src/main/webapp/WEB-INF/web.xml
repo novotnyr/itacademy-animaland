@@ -13,7 +13,7 @@
   
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.php</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>  
   
   <error-page>

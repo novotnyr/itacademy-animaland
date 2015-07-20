@@ -11,12 +11,19 @@
 
 		<h1>Trails</h1>
 		
-		<h:form>
-			<h:inputText value="#{trailsBean.query}"/>
-			<h:commandButton action="#{trailsBean.search}" 
-				value="Search"
-				styleClass="btn btn-primary"/>
-		</h:form>
+		<div class="panel panel-default">
+		  <div class="panel-body">
+	
+			<h:form styleClass="form-inline">
+				<h:inputText value="#{trailsBean.query}" styleClass="form-control"/>
+				<h:commandButton action="#{trailsBean.search}" 
+					value="Search"
+					styleClass="btn btn-primary"/>
+			</h:form>
+
+		  </div>
+		</div>
+		  		
 		
 		<h:form>
 			<h:dataTable var="trail" value="#{trailsBean.trails}" styleClass="table">
@@ -41,10 +48,19 @@
 			</h:dataTable>
 		</h:form>
 		
-		<h:form>
-			<h:inputText value="#{trailsBean.trail.description}"/>
-			<h:commandButton action="#{trailsBean.submit}" value="Add"/>
-		</h:form>
+		<div class="panel panel-default">
+		  <div class="panel-heading">Add a new trail</div>
+		  <div class="panel-body">
+
+			<h:form styleClass="form-inline">
+				<div class="form-group">
+					<h:inputText value="#{trailsBean.trail.description}" styleClass="form-control"/>
+				</div>
+				<h:commandButton action="#{trailsBean.submit}" value="Add" styleClass="btn btn-primary"/>
+			</h:form>
+
+		  </div>
+		</div>
 
 	
 	</ui:define>

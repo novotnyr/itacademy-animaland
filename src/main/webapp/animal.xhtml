@@ -1,24 +1,29 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<ui:composition
 	xmlns:f="http://java.sun.com/jsf/core" 
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	
+	template="/WEB-INF/template.xhtml"
 	>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
-	<h:panelGrid columns="2">
-		<h:outputText value="Species:" />
-		<h:outputText value="#{animalBean.animal.species}" />
+	
+	
+	<ui:define name="title">Animal</ui:define>
+	<ui:define name="content">
+		<div class="jumbotron">
+			<h1>#{animalBean.animal.species}</h1>
+		</div>
 		
-		<h:outputText value="Age:" />
-		<h:outputText value="#{animalBean.animal.age}" />
-		
-		<h:outputText value="Diet:" />
-		<h:outputText value="#{animalBean.animal.diet}" />
-	</h:panelGrid>
-</body>
-</html>
+		<dl class="dl-horizontal">
+		  <dt>Species</dt>
+		  <dd><h:outputText value="#{animalBean.animal.species}" /></dd>
+		  <dt>Age</dt>
+		  <dd><h:outputText value="#{animalBean.animal.age}" /></dd>
+		  <dt>Diet</dt>
+		  <dd><h:outputText value="#{animalBean.animal.diet}" /></dd>
+		</dl>		
+
+	
+	</ui:define>
+	
+</ui:composition>
+

@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import com.ibm.itacademy.animaland.Animal;
-import com.ibm.itacademy.animaland.AnimalDao;
+import com.ibm.itacademy.animaland.dao.AnimalDao;
 
 @Path("/animals")
 public class AnimalResource {
@@ -40,7 +40,7 @@ public class AnimalResource {
 	@POST
 	@Consumes("application/json")
 	public Response add(Animal animal, @Context UriInfo uriInfo) {
-		animalDao.saveOrUpdate(animal);
+		animalDao.insert(animal);
 		
 		URI uri = uriInfo
 			.getAbsolutePathBuilder()
@@ -53,23 +53,12 @@ public class AnimalResource {
 	}
 	
 	@Path("/{id}")
-	@DELETE
-	public Response delete(@PathParam("id") Long id) {
-		Animal animal = animalDao.findById(id);
-		animalDao.delete(animal);
-		
-		return Response.ok().build();
-	}
-	
-	@Path("/{id}")
 	@PUT
 	@Produces("application/json")
 	@Consumes("application/json")
 	public Animal update(@PathParam("id") Long id, Animal animal) {
 		animal.setId(id);
-		animalDao.saveOrUpdate(animal);
-		
-		return animalDao.findById(id);
+		return animalDao.update(animal);
 	}
 	
 	

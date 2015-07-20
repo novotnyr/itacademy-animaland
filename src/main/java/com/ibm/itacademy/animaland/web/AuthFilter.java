@@ -32,7 +32,7 @@ public class AuthFilter implements Filter {
 		if (request instanceof HttpServletRequest) {
 			HttpServletRequest httpSR = (HttpServletRequest) request;
 
-			if (httpSR.getRequestURI().endsWith("/animals.xhtml")) {
+			if (httpSR.getRequestURI().endsWith("/animals.do")) {
 				// ----------------------
 				if (loginBean == null || ! loginBean.isAuthenticated()) {
 					redirectToLoginPage(httpSR, response);

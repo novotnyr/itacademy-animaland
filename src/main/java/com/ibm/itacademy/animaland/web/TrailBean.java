@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,12 +11,12 @@ import org.omnifaces.cdi.Param;
 import org.omnifaces.cdi.ViewScoped;
 
 import com.ibm.itacademy.animaland.Animal;
-import com.ibm.itacademy.animaland.AnimalDao;
 import com.ibm.itacademy.animaland.Employee;
-import com.ibm.itacademy.animaland.EmployeeDao;
 import com.ibm.itacademy.animaland.Trail;
-import com.ibm.itacademy.animaland.TrailDao;
-import com.ibm.itacademy.animaland.TrailService;
+import com.ibm.itacademy.animaland.dao.AnimalDao;
+import com.ibm.itacademy.animaland.dao.EmployeeDao;
+import com.ibm.itacademy.animaland.dao.TrailDao;
+import com.ibm.itacademy.animaland.service.TrailService;
 
 @Named
 @ViewScoped
@@ -56,7 +55,7 @@ public class TrailBean implements Serializable {
 	public String assignAnimal() {
 		Animal animal = animalDao.findById(selectedAnimalId);
 		trail.addAnimal(animal);
-		trailDao.saveOrUpdate(trail);
+		trailDao.update(trail);
 		
 		return "trail?faces-redirect=true&trailId=" + trailId;
 	}
@@ -64,7 +63,7 @@ public class TrailBean implements Serializable {
 	public void assignEmployee() {
 		Employee employee = employeeDao.findById(selectedEmployeeId);
 		trail.setEmployee(employee);
-		trailDao.saveOrUpdate(trail);
+		trailDao.update(trail);
 	}
 	
 	

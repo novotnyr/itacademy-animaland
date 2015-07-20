@@ -13,7 +13,7 @@ import org.omnifaces.cdi.ViewScoped;
 
 import com.ibm.itacademy.animaland.Animal;
 import com.ibm.itacademy.animaland.Trail;
-import com.ibm.itacademy.animaland.TrailDao;
+import com.ibm.itacademy.animaland.dao.TrailDao;
 
 @Named
 @ViewScoped
@@ -28,19 +28,19 @@ public class TrailsBean implements Serializable {
 	private String query;
 	
 	@PostConstruct
-	public void init() {
+	public void refresh() {
 		trails = trailDao.list();
 		trail = new Trail();
 	}
 	
 	public void delete(Trail trail) {
 		trailDao.delete(trail);
-		init();
+		refresh();
 	}
 	
 	public void submit() {
-		trailDao.saveOrUpdate(trail);
-		init();
+		trailDao.insert(trail);
+		refresh();
 	}
 	
 	public void search() {

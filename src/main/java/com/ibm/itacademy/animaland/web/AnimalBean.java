@@ -1,30 +1,22 @@
 package com.ibm.itacademy.animaland.web;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.omnifaces.cdi.Param;
 
 import com.ibm.itacademy.animaland.Animal;
-import com.ibm.itacademy.animaland.AnimalDao;
-import com.ibm.itacademy.animaland.AnimalDaoFactory;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class AnimalBean {
-	@ManagedProperty("#{param.id}")
-	private Long id;
-	
-	private AnimalDao animalDao = AnimalDaoFactory
-			.getInstance()
-			.getAnimalDao();
+	@Inject
+	@Param(name = "id", converter="#{animalConverter}")
+	private Animal animal;
 	
 	public Animal getAnimal() {
-		return animalDao.findById(id);
+		return animal;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public Long getId() {
-		return id;
-	}
 }

@@ -1,20 +1,23 @@
-package com.ibm.itacademy.animaland;
+package com.ibm.itacademy.animaland.dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Stateless
+import com.ibm.itacademy.animaland.Employee;
+
+@Stateful
 public class JpaEmployeeDao implements EmployeeDao {
 	private static final Logger logger 
 		= LoggerFactory.getLogger(JpaEmployeeDao.class);
 
-	@PersistenceContext
+	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	private EntityManager entityManager;
 	
 	@SuppressWarnings("unchecked")

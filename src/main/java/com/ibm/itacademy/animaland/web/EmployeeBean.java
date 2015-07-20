@@ -5,14 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 
 import com.ibm.itacademy.animaland.Employee;
-import com.ibm.itacademy.animaland.EmployeeDao;
+import com.ibm.itacademy.animaland.dao.EmployeeDao;
 
 @Named
 @ViewScoped

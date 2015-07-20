@@ -2,13 +2,12 @@ package com.ibm.itacademy.animaland;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Animal {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	
 	private String species;
@@ -60,60 +59,26 @@ public class Animal {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + age;
-		result = prime * result + ((diet == null) ? 0 : diet.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + (male ? 1231 : 1237);
-		result = prime * result + ((species == null) ? 0 : species.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Animal)) return false;
+
+		Animal animal = (Animal) o;
+
+		if (getAge() != animal.getAge()) return false;
+		if (isMale() != animal.isMale()) return false;
+		if (getSpecies() != null ? !getSpecies().equals(animal.getSpecies()) : animal.getSpecies() != null)
+			return false;
+		return !(getDiet() != null ? !getDiet().equals(animal.getDiet()) : animal.getDiet() != null);
+
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Animal other = (Animal) obj;
-		if (age != other.age)
-			return false;
-		if (diet == null) {
-			if (other.diet != null)
-				return false;
-		} else if (!diet.equals(other.diet))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (male != other.male)
-			return false;
-		if (species == null) {
-			if (other.species != null)
-				return false;
-		} else if (!species.equals(other.species))
-			return false;
-		return true;
-	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int hashCode() {
+		int result = getSpecies() != null ? getSpecies().hashCode() : 0;
+		result = 31 * result + getAge();
+		result = 31 * result + (isMale() ? 1 : 0);
+		result = 31 * result + (getDiet() != null ? getDiet().hashCode() : 0);
+		return result;
+	}
 }
